@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Students\Schemas;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use App\Models\Department;
 use Filament\Schemas\Schema;
 
 class StudentForm
@@ -22,9 +23,10 @@ class StudentForm
                         'Male' => 'Male',
                         'Female' => 'Female',
                     ]),
-                TextInput::make('department_id')
+                Select::make('department_id')
                     ->required()
-                    ->numeric(),
+                    ->label('department')
+                    ->options(Department::all()->pluck('name', 'id')),
             ]);
     }
 }
